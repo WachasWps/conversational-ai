@@ -1,0 +1,8 @@
+quart
+uvicorn
+httpx
+websockets
+sounddevice
+pyaudio
+python-dotenv
+requests

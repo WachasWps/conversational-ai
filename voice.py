@@ -17,7 +17,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-# Config
+# --- Config ---
 DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 DEEPGRAM_URL = "wss://api.deepgram.com/v1/listen?punctuate=true&language=en"
 
@@ -30,12 +30,15 @@ ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 VOICE_ID = "EXAVITQu4vr4xnSDxMaL"
 MODEL_ID = "eleven_multilingual_v2"
 
+# --- Lock to prevent response overlap ---
+response_lock = asyncio.Lock()
+
 # --- Helpers ---
 def pcm_to_wav(pcm_bytes: bytes, sample_rate=16000, channels=1):
     buf = BytesIO()
     wf = wave.open(buf, 'wb')
     wf.setnchannels(channels)
-    wf.setsampwidth(2)  # 16-bit
+    wf.setsampwidth(2)
     wf.setframerate(sample_rate)
     wf.writeframes(pcm_bytes)
     wf.close()
@@ -53,6 +56,7 @@ async def ask_gpt_streaming(prompt: str):
         "max_tokens": 300,
         "stream": True
     }
+
     async with httpx.AsyncClient(timeout=60.0) as client:
         async with client.stream("POST", url, headers=headers, json=payload) as resp:
             async for line in resp.aiter_lines():
@@ -61,8 +65,19 @@ async def ask_gpt_streaming(prompt: str):
 
 def stream_tts_chunk(text: str) -> bytes:
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}/stream?optimize_streaming_latency=0&output_format=pcm_16000"
-    headers = {"xi-api-key": ELEVENLABS_API_KEY, "Content-Type": "application/json"}
-    payload = {"text": text, "model_id": MODEL_ID, "voice_settings": {"stability":0.4,"similarity_boost":0.6}}
+    headers = {
+        "xi-api-key": ELEVENLABS_API_KEY,
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "text": text,
+        "model_id": MODEL_ID,
+        "voice_settings": {
+            "stability": 0.4,
+            "similarity_boost": 0.6
+        }
+    }
+
     r = requests.post(url, headers=headers, json=payload, stream=True)
     r.raise_for_status()
     pcm = b"".join(r.iter_content(1024))
@@ -75,8 +90,9 @@ async def stream_tts_from_gpt(prompt: str):
 
     logging.info("🧠 GPT → TTS streaming start")
     async for token in ask_gpt_streaming(prompt):
-        piece = json.loads(token)["choices"][0]["delta"].get("content","")
-        if not piece: continue
+        piece = json.loads(token)["choices"][0]["delta"].get("content", "")
+        if not piece:
+            continue
         buffer += piece
         logging.info(f"💬 GPT: {piece.strip()}")
 
@@ -92,33 +108,64 @@ async def stream_tts_from_gpt(prompt: str):
 
 async def deepgram_mic_stream():
     logging.info("🎧 Connecting to Deepgram...")
-    async with websockets.connect(DEEPGRAM_URL, extra_headers={"Authorization":f"Token {DEEPGRAM_API_KEY}"}) as ws:
-        stop = asyncio.Event()
+    RATE = 16000
+    CHUNK = 1024
 
-        def cb(in_data, frames, time, status):
+    async with websockets.connect(DEEPGRAM_URL, extra_headers={"Authorization": f"Token {DEEPGRAM_API_KEY}"}) as ws:
+        stop_event = asyncio.Event()
+
+        loop = asyncio.get_event_loop()
+
+        def callback(indata, frames, time, status):
             if not ws.closed:
-                asyncio.ensure_future(ws.send(in_data))
+                loop.call_soon_threadsafe(asyncio.create_task, ws.send(indata.tobytes()))
 
         async def send_audio():
-            with sd.InputStream(samplerate=16000, channels=1, dtype='int16', callback=cb):
-                await stop.wait()
+            try:
+                with sd.InputStream(samplerate=RATE, channels=1, dtype='int16', blocksize=CHUNK, callback=callback):
+                    await stop_event.wait()
+            except Exception as e:
+                logging.exception("❌ Error in audio input stream")
 
-        async def recv_and_respond():
-            async for msg in ws:
-                data = json.loads(msg)
-                transcript = data.get("channel",{}).get("alternatives",[{}])[0].get("transcript","")
-                if transcript:
-                    logging.info(f"📝 You said: {transcript}")
-                    # stream GPT+TTS chunks back
-                    async for wav in stream_tts_from_gpt(transcript):
-                        await ws.send(wav)
-                    stop.set()
-                    break
+        async def receive_transcript():
+            try:
+                async for msg in ws:
+                    data = json.loads(msg)
+                    transcript = data.get("channel", {}).get("alternatives", [{}])[0].get("transcript", "")
+                    if transcript:
+                        logging.info(f"📝 You said: {transcript}")
+                        async with response_lock:
+                            async for wav_chunk in stream_tts_from_gpt(transcript):
+                                # Play audio using PyAudio
+                                play_audio(wav_chunk)
+            except websockets.exceptions.ConnectionClosed:
+                logging.info("🔌 WebSocket closed.")
+                stop_event.set()
 
-        await asyncio.gather(send_audio(), recv_and_respond())
+        await asyncio.gather(send_audio(), receive_transcript())
 
-if __name__=="__main__":
+def play_audio(wav_data: bytes):
+    wf = wave.open(BytesIO(wav_data), 'rb')
+    p = pyaudio.PyAudio()
+    stream = p.open(
+        format=p.get_format_from_width(wf.getsampwidth()),
+        channels=wf.getnchannels(),
+        rate=wf.getframerate(),
+        output=True
+    )
+    chunk = 1024
+    data = wf.readframes(chunk)
+    while data:
+        stream.write(data)
+        data = wf.readframes(chunk)
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+# --- Main ---
+if __name__ == "__main__":
     try:
         asyncio.run(deepgram_mic_stream())
     except KeyboardInterrupt:
-        logging.info("👋 Bye")
+        logging.info("👋 Exiting cleanly.")

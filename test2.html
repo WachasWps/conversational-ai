@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Live AI Voice</title>
+</head>
+<body>
+  <h2>🎙️ Talk to AI</h2>
+  <button id="start">Start</button>
+  <button id="stop" disabled>Stop</button>
+  <pre id="log"></pre>
+
+  <script>
+    const logEl = document.getElementById("log");
+    function log(msg){ logEl.textContent += msg + "\n"; }
+
+    let ws, recorder, audioCtx;
+
+    document.getElementById("start").onclick = async () => {
+      ws = new WebSocket("ws://localhost:5000/ws/live");
+      ws.binaryType = "arraybuffer";
+      log("🔄 Connecting...");
+      ws.onopen = async () => {
+        log("✅ Connected");
+        const mic = await navigator.mediaDevices.getUserMedia({ audio: true });
+        recorder = new MediaRecorder(mic);
+        recorder.ondataavailable = e => {
+          if(ws.readyState===1) ws.send(e.data);
+          log("🎤 Sent audio chunk");
+        };
+        recorder.start(200);
+      };
+      ws.onmessage = e => {
+        log("🔊 Playing response");
+        const blob = new Blob([e.data], { type:"audio/wav" });
+        const url = URL.createObjectURL(blob);
+        new Audio(url).play();
+      };
+      ws.onclose = ()=> log("🔌 Disconnected");
+      document.getElementById("start").disabled = true;
+      document.getElementById("stop").disabled  = false;
+    };
+
+    document.getElementById("stop").onclick = () => {
+      recorder && recorder.stop();
+      ws && ws.close();
+      document.getElementById("start").disabled = false;
+      document.getElementById("stop").disabled  = true;
+    };
+  </script>
+</body>
+</html>

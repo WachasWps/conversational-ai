@@ -1,0 +1,305 @@
+2025-06-12 15:41:37,197 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:41:37,252 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 15:41:37,252 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 15:41:37,283 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:41:39,569 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:41:39,586 [WARNING]  * Debugger is active!
+2025-06-12 15:41:39,626 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:41:46,082 [INFO] [AUDIO] Received audio
+2025-06-12 15:41:47,687 [INFO] [STT] Transcription took 1.60s: Hello. How are you?
+2025-06-12 15:41:48,916 [INFO] HTTP Request: POST https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 401 PermissionDenied"
+2025-06-12 15:41:48,918 [ERROR] [GPT] GPT API error
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm.py", line 29, in ask_gpt
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 PermissionDenied' for url 'https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-06-12 15:41:49,654 [ERROR] [TTS] ElevenLabs streaming failed
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\tts.py", line 32, in play_tts_stream
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL/stream
+2025-06-12 15:41:49,658 [INFO] 127.0.0.1 - - [12/Jun/2025 15:41:49] "POST /api/audio HTTP/1.1" 200 -
+2025-06-12 15:43:03,202 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,203 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,203 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,453 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,454 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,456 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,578 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,578 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,579 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,747 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,749 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,750 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,898 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:03,903 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 15:43:04,810 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:43:09,097 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:43:09,135 [WARNING]  * Debugger is active!
+2025-06-12 15:43:09,199 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:43:26,089 [INFO] [AUDIO] Received audio
+2025-06-12 15:43:27,726 [INFO] [STT] Transcription took 1.63s: Hello. How are you?
+2025-06-12 15:43:28,984 [INFO] HTTP Request: POST https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 401 PermissionDenied"
+2025-06-12 15:43:28,986 [ERROR] [GPT] GPT API error
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm.py", line 29, in ask_gpt
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 PermissionDenied' for url 'https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-06-12 15:43:32,735 [ERROR] [TTS] ElevenLabs streaming failed
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\tts.py", line 32, in play_tts_stream
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.elevenlabs.io/v1/text-to-speech/ZeK6O9RfGNGj0cJT2HoJ/stream
+2025-06-12 15:43:32,739 [INFO] 127.0.0.1 - - [12/Jun/2025 15:43:32] "POST /api/audio HTTP/1.1" 200 -
+2025-06-12 15:47:11,832 [INFO] 127.0.0.1 - - [12/Jun/2025 15:47:11] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 15:47:12,098 [INFO] [TEXT] Received prompt: hello how are you
+2025-06-12 15:47:13,324 [INFO] HTTP Request: POST https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 401 PermissionDenied"
+2025-06-12 15:47:13,325 [ERROR] [GPT] GPT API error
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm.py", line 29, in ask_gpt
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 PermissionDenied' for url 'https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-06-12 15:47:14,086 [ERROR] [TTS] ElevenLabs streaming failed
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\tts.py", line 32, in play_tts_stream
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.elevenlabs.io/v1/text-to-speech/ZeK6O9RfGNGj0cJT2HoJ/stream
+2025-06-12 15:47:14,088 [INFO] 127.0.0.1 - - [12/Jun/2025 15:47:14] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 15:53:04,496 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:53:04,530 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 15:53:04,530 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 15:53:04,550 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:53:06,232 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:53:06,247 [WARNING]  * Debugger is active!
+2025-06-12 15:53:06,292 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:53:26,709 [INFO] 127.0.0.1 - - [12/Jun/2025 15:53:26] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 15:53:26,958 [INFO] [TEXT] Received: hello how are you | LLM: gemini
+2025-06-12 15:53:27,819 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 404 Not Found"
+2025-06-12 15:53:27,821 [ERROR] [GEMINI] Error during Gemini LLM call
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm_gemini.py", line 28, in ask_gemini
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2025-06-12 15:53:33,661 [ERROR] [TTS] ElevenLabs streaming failed
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\tts.py", line 32, in play_tts_stream
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.elevenlabs.io/v1/text-to-speech/ZeK6O9RfGNGj0cJT2HoJ/stream
+2025-06-12 15:53:33,666 [INFO]  * Detected change in 'C:\\Python312\\Lib\\site-packages\\requests\\models.py', reloading
+2025-06-12 15:53:33,669 [INFO] 127.0.0.1 - - [12/Jun/2025 15:53:33] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 15:53:34,614 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:53:36,403 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:53:36,415 [WARNING]  * Debugger is active!
+2025-06-12 15:53:36,447 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:54:42,688 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:54:42,733 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 15:54:42,733 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 15:54:42,757 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:54:44,714 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:54:44,729 [WARNING]  * Debugger is active!
+2025-06-12 15:54:44,765 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:54:55,918 [INFO] 127.0.0.1 - - [12/Jun/2025 15:54:55] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 15:54:56,169 [INFO] [TEXT] Received: hello how r u | LLM: gemini
+2025-06-12 15:54:56,947 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 404 Not Found"
+2025-06-12 15:54:56,949 [ERROR] [GEMINI] Error during Gemini LLM call
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm_gemini.py", line 28, in ask_gemini
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2025-06-12 15:54:58,235 [ERROR] [TTS] ElevenLabs streaming failed
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\tts.py", line 32, in play_tts_stream
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.elevenlabs.io/v1/text-to-speech/ZeK6O9RfGNGj0cJT2HoJ/stream
+2025-06-12 15:54:58,238 [INFO] 127.0.0.1 - - [12/Jun/2025 15:54:58] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 15:59:09,566 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,568 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,568 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,756 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,757 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,757 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,894 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:09,895 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\llm_gemini.py', reloading
+2025-06-12 15:59:10,348 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:59:18,309 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:59:18,350 [WARNING]  * Debugger is active!
+2025-06-12 15:59:18,467 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:59:28,255 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:59:28,285 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 15:59:28,285 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 15:59:28,302 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 15:59:29,720 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 15:59:29,734 [WARNING]  * Debugger is active!
+2025-06-12 15:59:29,768 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 15:59:56,232 [INFO] 127.0.0.1 - - [12/Jun/2025 15:59:56] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 15:59:56,497 [INFO] [TEXT] Received: hello how r u | LLM: gemini
+2025-06-12 15:59:57,636 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 15:59:57,639 [INFO] [GEMINI] LLM took 1.14s: I'm doing well, thank you for asking!  How are you today?
+
+2025-06-12 16:00:01,574 [INFO] [TTS] ElevenLabs TTS took 3.93s
+2025-06-12 16:00:01,576 [INFO] 127.0.0.1 - - [12/Jun/2025 16:00:01] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:00:13,607 [INFO] 127.0.0.1 - - [12/Jun/2025 16:00:13] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:00:13,921 [INFO] [TEXT] Received: ok can you tell me what's time it's | LLM: gemini
+2025-06-12 16:00:15,085 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 16:00:15,087 [INFO] [GEMINI] LLM took 1.17s: I do not have access to real-time information, including the current time.  To find out the time, please check a clock, watch, or your computer/phone.
+
+2025-06-12 16:00:21,763 [INFO] [TTS] ElevenLabs TTS took 6.68s
+2025-06-12 16:00:21,766 [INFO] 127.0.0.1 - - [12/Jun/2025 16:00:21] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:03:04,587 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:03:04,616 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 16:03:04,616 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 16:03:04,636 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:03:06,195 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:03:06,211 [WARNING]  * Debugger is active!
+2025-06-12 16:03:06,252 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:03:10,380 [INFO] 127.0.0.1 - - [12/Jun/2025 16:03:10] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:03:10,626 [INFO] [TEXT] Received: hey how are you how is your day | LLM: gemini
+2025-06-12 16:03:11,824 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 16:03:11,825 [INFO] [GEMINI] LLM took 1.20s: I'm doing well, thank you for asking!  As a large language model, I don't experience days in the same way humans do, but I'm functioning optimally and ready to assist you.  How is your day going?
+
+2025-06-12 16:03:20,234 [INFO] [TTS] ElevenLabs TTS took 8.41s
+2025-06-12 16:03:20,236 [INFO] 127.0.0.1 - - [12/Jun/2025 16:03:20] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:07:03,759 [INFO] 127.0.0.1 - - [12/Jun/2025 16:07:03] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:07:03,987 [INFO] [TEXT] Received: hello what can you say me about | LLM: openai
+2025-06-12 16:07:05,159 [INFO] HTTP Request: POST https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview "HTTP/1.1 401 PermissionDenied"
+2025-06-12 16:07:05,160 [ERROR] [GPT] GPT API error
+Traceback (most recent call last):
+  File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm.py", line 29, in ask_gpt
+    response.raise_for_status()
+  File "C:\Python312\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 PermissionDenied' for url 'https://botwot-opanai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-06-12 16:07:07,818 [INFO] [TTS] ElevenLabs TTS took 2.65s
+2025-06-12 16:07:07,820 [INFO] 127.0.0.1 - - [12/Jun/2025 16:07:07] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:08:40,392 [INFO] 127.0.0.1 - - [12/Jun/2025 16:08:40] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:08:40,631 [INFO] [TEXT] Received: hello how are you | LLM: gemini
+2025-06-12 16:08:41,620 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 16:08:41,621 [INFO] [GEMINI] LLM took 0.99s: I'm doing well, thank you for asking!  How are you today?
+
+2025-06-12 16:08:50,228 [INFO] [TTS] ElevenLabs TTS took 8.61s
+2025-06-12 16:08:50,230 [INFO] 127.0.0.1 - - [12/Jun/2025 16:08:50] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:11:43,012 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:43,013 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:43,013 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:43,400 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:11:45,665 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:11:45,689 [WARNING]  * Debugger is active!
+2025-06-12 16:11:45,741 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:11:47,240 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:47,241 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:47,696 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:47,697 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:11:48,082 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:11:55,513 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:11:55,543 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-12 16:11:55,543 [INFO] [33mPress CTRL+C to quit[0m
+2025-06-12 16:11:55,561 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:11:57,058 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:11:57,071 [WARNING]  * Debugger is active!
+2025-06-12 16:11:57,105 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:12:02,938 [INFO] 127.0.0.1 - - [12/Jun/2025 16:12:02] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:12:03,203 [INFO] [TEXT] Received: hello how are you | LLM: gemini
+2025-06-12 16:12:04,189 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 16:12:04,190 [INFO] [GEMINI] LLM took 0.99s: I am doing well, thank you for asking!  How are you today?
+
+2025-06-12 16:12:07,797 [INFO] [TTS] ElevenLabs TTS took 3.61s
+2025-06-12 16:12:07,799 [INFO] 127.0.0.1 - - [12/Jun/2025 16:12:07] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:12:25,070 [INFO] 127.0.0.1 - - [12/Jun/2025 16:12:25] "OPTIONS /api/text HTTP/1.1" 200 -
+2025-06-12 16:12:25,333 [INFO] [TEXT] Received: I am good I was saying I want some information of Google current | LLM: gemini
+2025-06-12 16:12:27,696 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 200 OK"
+2025-06-12 16:12:27,698 [INFO] [GEMINI] LLM took 2.36s: To give you relevant information about Google's current state, I need some specifics.  "Current" is broad.  What aspects of Google are you interested in?  For example, are you curious about:
+
+* **Financial performance?**  (Recent earnings reports, stock price, revenue streams)
+* **Product updates?** (New features in Google Search, Gmail, Android, etc.)
+* **Legal issues?** (Ongoing antitrust lawsuits, privacy concerns)
+* **Technological advancements?** (AI developments, quantum computing research)
+* **Company culture and employee relations?** (Workplace environment, diversity initiatives)
+* **Market share and competition?** (Position relative to competitors like Microsoft, Meta, etc.)
+* **Specific projects or initiatives?** (e.g., Google Fiber, Waymo)
+
+
+Please clarify your request with more details, and I'll do my best to provide you with accurate and up-to-date information.
+
+2025-06-12 16:13:03,793 [INFO] [TTS] ElevenLabs TTS took 36.10s
+2025-06-12 16:13:03,796 [INFO] 127.0.0.1 - - [12/Jun/2025 16:13:03] "POST /api/text HTTP/1.1" 200 -
+2025-06-12 16:16:26,474 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,475 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,476 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,753 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,754 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,755 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,906 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,907 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:26,908 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\tts.py', reloading
+2025-06-12 16:16:27,522 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:16:31,207 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:16:31,255 [WARNING]  * Debugger is active!
+2025-06-12 16:16:31,336 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:22:06,159 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:06,994 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:22:09,402 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:22:09,424 [WARNING]  * Debugger is active!
+2025-06-12 16:22:09,462 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:22:25,814 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:25,816 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:25,816 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,100 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,101 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,102 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,248 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,249 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,466 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,467 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,468 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:26,937 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:22:31,600 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:22:31,626 [WARNING]  * Debugger is active!
+2025-06-12 16:22:31,698 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:22:33,802 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:33,802 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:34,105 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:34,106 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:34,106 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:35,065 [INFO]  * Restarting with watchdog (windowsapi)
+2025-06-12 16:22:37,554 [INFO] \U0001f680 Starting Flask server...
+2025-06-12 16:22:37,584 [WARNING]  * Debugger is active!
+2025-06-12 16:22:37,629 [INFO]  * Debugger PIN: 123-614-996
+2025-06-12 16:22:44,224 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:44,225 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:44,449 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:44,450 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:44,451 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:44,640 [INFO]  * Detected change in 'C:\\Users\\wacha\\OneDrive\\Desktop\\Storage\\voice-call\\streaming_agent.py', reloading
+2025-06-12 16:22:45,064 [INFO]  * Restarting with watchdog (windowsapi)

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Voice Assistant</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+    button, select, input {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    #log {
+      margin-top: 15px;
+      background: #eee;
+      padding: 10px;
+      max-height: 250px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    #spinner {
+      display: none;
+      font-size: 18px;
+      color: #555;
+      margin-top: 10px;
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎙️ Live Conversational AI</h2>
+
+  <label for="llm-select">Select LLM:</label>
+  <select id="llm-select">
+    <option value="openai">GPT (OpenAI)</option>
+    <option value="gemini">Gemini (Google)</option>
+  </select>
+
+  <br>
+
+  <button id="start-convo">▶️ Start Conversation</button>
+  <button id="stop-convo" disabled>⏹️ Stop Conversation</button>
+
+  <div id="spinner">💬 Assistant is speaking...</div>
+  <div id="log"></div>
+
+  <script>
+    const startBtn = document.getElementById("start-convo");
+    const stopBtn = document.getElementById("stop-convo");
+    const spinner = document.getElementById("spinner");
+    const logDiv = document.getElementById("log");
+    const llmSelect = document.getElementById("llm-select");
+
+    let recognition;
+    let isRunning = false;
+
+    function log(msg) {
+      const ts = new Date().toLocaleTimeString();
+      logDiv.innerText += `[${ts}] ${msg}\n`;
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function showSpinner() {
+      spinner.style.display = "block";
+    }
+
+    function hideSpinner() {
+      spinner.style.display = "none";
+    }
+
+    function getSelectedLLM() {
+      return llmSelect.value;
+    }
+
+    function speakAndContinue(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1;
+      speechSynthesis.speak(utterance);
+      showSpinner();
+      log("🗣️ Assistant: " + text);
+      utterance.onend = () => {
+        hideSpinner();
+        if (isRunning) startListening();
+      };
+    }
+
+    function startListening() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert("Speech recognition not supported in this browser. Use Chrome.");
+        return;
+      }
+
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.continuous = false;
+
+      log("🎙️ Listening...");
+      recognition.start();
+
+      recognition.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript;
+        log("🎤 You: " + transcript);
+        recognition.stop();
+
+        try {
+          const res = await fetch("http://localhost:5000/api/text", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              prompt: transcript,
+              llm: getSelectedLLM()
+            })
+          });
+
+          const data = await res.json();
+          if (data.error) {
+            log("❌ Error: " + data.error);
+            return;
+          }
+
+          log("💬 Response: " + data.response);
+          if (data.timing) {
+            log("⏱️ Timings:");
+            log("   LLM: " + data.timing.llm + "s");
+            log("   TTS: " + data.timing.tts + "s");
+            log("   Total: " + data.timing.total + "s");
+          }
+
+          speakAndContinue(data.response);
+        } catch (err) {
+          log("❌ Network error: " + err.message);
+        }
+      };
+
+      recognition.onerror = (e) => {
+        log("❌ Speech error: " + e.error);
+        if (isRunning) setTimeout(startListening, 1000); // retry
+      };
+    }
+
+    startBtn.onclick = () => {
+      isRunning = true;
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      log("🟢 Conversation started (LLM: " + getSelectedLLM() + ")");
+      startListening();
+    };
+
+    stopBtn.onclick = () => {
+      isRunning = false;
+      if (recognition) recognition.stop();
+      log("⏹️ Conversation stopped");
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+      hideSpinner();
+    };
+  </script>
+</body>
+</html>

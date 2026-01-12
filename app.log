@@ -91,7 +91,7 @@ requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://a
 2025-06-12 15:53:06,292 [INFO]  * Debugger PIN: 123-614-996
 2025-06-12 15:53:26,709 [INFO] 127.0.0.1 - - [12/Jun/2025 15:53:26] "OPTIONS /api/text HTTP/1.1" 200 -
 2025-06-12 15:53:26,958 [INFO] [TEXT] Received: hello how are you | LLM: gemini
-2025-06-12 15:53:27,819 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 404 Not Found"
+2025-06-12 15:53:27,819 [INFO] HTTP Request: POS https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAXrfJEVZPbrmtUyGXzp4jNeQNWHcHUWgM "HTTP/1.1 404 Not Found"
 2025-06-12 15:53:27,821 [ERROR] [GEMINI] Error during Gemini LLM call
 Traceback (most recent call last):
   File "C:\Users\wacha\OneDrive\Desktop\Storage\voice-call\llm_gemini.py", line 28, in ask_gemini
